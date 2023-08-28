@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Employee</title>
+</head>
+<body>
+<h1>Enter Employee data:</h1>
+<ul>
+    <form th:action="@{/form}" method="POST">
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required><br>
+
+        <label for="profile">Profile:</label>
+        <input type="text" id="profile" name="profile" required><br>
+
+        <label for="salary">Salary:</label>
+        <input type="number" id="salary" name="salary" required><br>
+
+    <label for="Department">Select Department</label><br>
+    <select id="Department" name="Department" width=300 style="width: 350px" size="8" multiple="multiple" required>
+        <option value="">select Department from below</option>
+        <option th:each="Department : ${yourList}" th:value="${Department}" th:text="${Department}"></option>
+    </select>
+
+        <button type="submit">Submit</button>
+    </form>
+</ul>
+</body>
+</html>

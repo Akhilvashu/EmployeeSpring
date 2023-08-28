@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Employee List</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+<div class="container my-2">
+    <h1>Employees List</h1>
+
+    <a th:href="@{/form}" class="btn btn-primary btn-sm mb-3"> Add Employee </a>
+
+    <table border="1" class="table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th> Name</th>
+            <th> Age</th>
+            <th> Profile</th>
+            <th> Salary
+                <form th:action="@{/sort}" method="get" style="display: inline;">
+                    <button type="submit" style="border: none; background: none;">
+                        <span>&#x21e7;</span>
+                    </button>
+                </form>
+                <form th:action="@{/dsort}" method="get" style="display: inline;">
+                    <button type="submit" style="border: none; background: none;">
+                        <span>&#x21e9;</span>
+                    </button>
+                </form>
+            </th>
+            <th> Department </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="employee : ${employeelist}">
+            <td th:text="${employee.name}"></td>
+            <td th:text="${employee.age}"></td>
+            <td th:text="${employee.profile}"></td>
+            <td th:text="${employee.salary}"></td>
+            <td>
+                <ul>
+                    <li th:each="department : ${employee.departments}"
+                          th:text="${department.depname}"></li>
+                </ul>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+
+</html>
