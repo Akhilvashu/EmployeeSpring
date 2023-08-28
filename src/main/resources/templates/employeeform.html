@@ -71,7 +71,6 @@
 
     <label for="Department">Select Department:</label><br>
     <select id="Department" name="Department" size="8" multiple="multiple" required>
-        <option value="">Select Department from below</option>
         <option th:each="department : ${yourList}" th:value="${department}" th:text="${department}"></option>
     </select>
 
