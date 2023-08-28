@@ -69,7 +69,7 @@
     <label for="salary">Salary:</label>
     <input type="number" id="salary" name="salary" required><br>
 
-    <label for="Department">Select Department:</label><br>
+    <label for="Department">Select Department/s from below:</label><br>
     <select id="Department" name="Department" size="8" multiple="multiple" required>
         <option th:each="department : ${yourList}" th:value="${department}" th:text="${department}"></option>
     </select>
