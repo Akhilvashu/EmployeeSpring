@@ -1,7 +1,5 @@
 package com.colum_retrieving.testing.entity;
 
-import com.colum_retrieving.testing.entity.Department;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -25,9 +23,9 @@ public class Employee {
     public String profile;
 
     @Column(name = "Salary")
-    public int Salary;
+    public Long salary;
 
-    @ManyToMany(cascade = CascadeType.MERGE)
+    @ManyToMany(cascade = CascadeType.REMOVE)
     @JoinTable( name = "Emp_dep",
             joinColumns = @JoinColumn(name = "Employee_Id"),
             inverseJoinColumns = @JoinColumn(name = "Department_Id")
@@ -65,7 +63,10 @@ public class Employee {
     public void setAge(int age) {
         this.age = age;
     }
-
+ @JoinTable( name = "Emp_dep",
+            joinColumns = @JoinColumn(name = "Employee_Id"),
+            inverseJoinColumns = @JoinColumn(name = "Department_Id")
+    )
     public String getProfile() {
         return profile;
     }
@@ -74,11 +75,11 @@ public class Employee {
         this.profile = profile;
     }
 
-    public int getSalary() {
-        return Salary;
+    public Long getSalary() {
+        return salary;
     }
 
-    public void setSalary(int salary) {
-        Salary = salary;
+    public void setSalary(Long salary) {
+        this.salary = salary;
     }
 }

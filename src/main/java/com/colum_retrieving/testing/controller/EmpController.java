@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -44,19 +45,50 @@ public class EmpController {
 
     @GetMapping(path = "/list")
     private String employeelist(Model model) {
+        List<String> listofDepartments = SService.getDepartmentNames();
+        model.addAttribute("yourList", listofDepartments);
         model.addAttribute("employeelist", SService.list());
         return "employeelist";
     }
 
-    @GetMapping(path="/sort")
-    private String Sortedlist(Model model){
-        model.addAttribute("employeelist",SService.SortedEmp());
+    @GetMapping(path = "/sort")
+    private String Sortedlist(Model model) {
+        model.addAttribute("employeelist", SService.SortedEmp());
         return "employeelist";
     }
 
-    @GetMapping(path="/dsort")
-    private String DSortedlist(Model model){
-        model.addAttribute("employeelist",SService.DSortedEmp());
+    @GetMapping(path = "/dsort")
+    private String DSortedlist(Model model) {
+        model.addAttribute("employeelist", SService.DSortedEmp());
         return "employeelist";
     }
+
+    @GetMapping(path = "/search")
+    private String Search(@RequestParam(required = false) String depname,
+                          @RequestParam(required = false) Long Salary,
+                          @RequestParam(required = false) String name,
+                          Model model) {
+        List<String> listofDepartments = SService.getDepartmentNames();
+        model.addAttribute("yourList", listofDepartments);
+
+        try {
+            if (depname != null) {
+                Department ParticularDep = DService.dep(depname);
+                List<Employee> EmployeeOfParticularDep = new ArrayList<>(ParticularDep.getEmployees());
+                model.addAttribute("employeelist", EmployeeOfParticularDep);
+            } else if (Salary != null) {
+                List<Employee> EmployeewithSalary = SService.FindbySalary(Salary);
+                model.addAttribute("employeelist", EmployeewithSalary);
+            } else if (name != null && !name.isEmpty()) {
+                List<Employee> EmployeewithName = SService.FindbyName(name);
+                model.addAttribute("employeelist", EmployeewithName);
+            } else {
+                return "redirect:/list";
+            }
+        } catch(NullPointerException e) {
+            return "redirect:/list";
+            }
+
+        return "employeelist";
+}
 }

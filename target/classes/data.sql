@@ -1,5 +1,5 @@
-INSERT INTO Data.student (student_name) VALUES ('Aryan');
-INSERT INTO Data.student (student_name) VALUES ('Aryan101');
-INSERT INTO Data.student (student_name) VALUES ('Akhil');
-INSERT INTO Data.student (student_name) VALUES ('Akhil01');
-INSERT INTO Data.student (student_name) VALUES ('Mahesh');
+INSERT INTO department (Department_Name) VALUES ('HR');
+INSERT INTO department (Department_Name) VALUES ('Product Management');
+INSERT INTO department (Department_Name) VALUES ('Software');
+INSERT INTO department (Department_Name) VALUES ('Data Science');
+INSERT INTO department (Department_Name) VALUES ('QA');

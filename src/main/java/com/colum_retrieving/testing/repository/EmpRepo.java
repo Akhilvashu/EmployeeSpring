@@ -10,12 +10,17 @@ import java.util.List;
 @Repository
 public interface EmpRepo extends JpaRepository<Employee,Long> {
 
-    @Query(value = "SELECT department_name FROM Database.department;",nativeQuery = true)
+    @Query("SELECT D.depname FROM Department D")
     List<String> findDepartmentNames();
 
-    @Query(value="SELECT * FROM Database.employee ORDER BY salary asc;",nativeQuery = true)
+    @Query("SELECT E FROM Employee E ORDER BY E.salary ASC")
     List<Employee> sortedemployeelist();
 
-    @Query(value = "SELECT * FROM Database.employee order by salary desc;",nativeQuery = true)
+    @Query("SELECT E FROM Employee E order by E.salary DESC")
     List<Employee> dsortedemployeelist();
+
+
+    List<Employee> findBySalary(Long Salary);
+
+    List<Employee> findByName(String Empname);
 }

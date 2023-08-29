@@ -17,7 +17,7 @@ public class Department {
     @Column(name = "Department_Name")
     public String depname;
 
-    @ManyToMany(mappedBy = "departments")
+    @ManyToMany(mappedBy = "departments",cascade = CascadeType.REMOVE)
     private Set<Employee> employees = new HashSet<>();
 
     public Set<Employee> getEmployees() {

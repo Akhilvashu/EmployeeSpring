@@ -32,6 +32,14 @@ public class EmpService {
     public List<Employee> DSortedEmp() {
         return SRepo.dsortedemployeelist();
     }
+
+    public List<Employee> FindbySalary(Long Salary){
+        return SRepo.findBySalary(Salary);
+    }
+
+    public List<Employee> FindbyName(String Name){
+        return SRepo.findByName(Name);
+    }
 }
 
 

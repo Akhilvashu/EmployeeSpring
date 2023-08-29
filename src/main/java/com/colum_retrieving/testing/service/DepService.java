@@ -17,4 +17,8 @@ public class DepService {
         return Drepo.findBydepnameIn(departmentNames);
     }
 
+    public Department dep(String depname){
+        return Drepo.findByDepname(depname);
+    }
+
 }
